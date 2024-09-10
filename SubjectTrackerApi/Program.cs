@@ -1,3 +1,7 @@
+//==================================================
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//==================================================
 
 using SubjectTrackerApi.Brokers;
 
@@ -27,12 +31,8 @@ namespace SubjectTrackerApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

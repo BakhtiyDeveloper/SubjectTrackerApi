@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//==================================================
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//==================================================
+
+using Microsoft.EntityFrameworkCore;
 using STX.EFxceptions.SqlServer;
 using SubjectTrackerApi.Models;
 
