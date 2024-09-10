@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SubjectTrackerApi.Brokers;
 
 namespace SubjectTrackerApi.Controllers
 {
@@ -6,6 +7,8 @@ namespace SubjectTrackerApi.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private IStorageBroker storageBroker;
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -13,8 +16,9 @@ namespace SubjectTrackerApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IStorageBroker storageBroker)
         {
+            this.storageBroker = storageBroker;
             _logger = logger;
         }
 

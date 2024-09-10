@@ -1,3 +1,9 @@
+//==================================================
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//==================================================
+
+using SubjectTrackerApi.Brokers;
 
 namespace SubjectTrackerApi
 {
@@ -8,8 +14,9 @@ namespace SubjectTrackerApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddTransient<IStorageBroker, StorageBroker>();
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -24,12 +31,8 @@ namespace SubjectTrackerApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
