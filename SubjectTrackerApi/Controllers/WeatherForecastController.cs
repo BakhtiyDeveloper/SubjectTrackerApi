@@ -1,5 +1,11 @@
+//==================================================
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//==================================================
+
 using Microsoft.AspNetCore.Mvc;
 using SubjectTrackerApi.Brokers;
+using SubjectTrackerApi.Models;
 
 namespace SubjectTrackerApi.Controllers
 {
@@ -23,8 +29,13 @@ namespace SubjectTrackerApi.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task <IEnumerable<WeatherForecast>> Get()
         {
+            Subject subject = new Subject();
+            subject.Name = "Baxtiyor"; 
+            subject.Id = Guid.NewGuid();
+            await storageBroker.InsertSubjectAsync(subject);
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

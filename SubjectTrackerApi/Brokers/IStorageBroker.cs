@@ -3,11 +3,12 @@
 // Free To Use Comfort and Peace
 //==================================================
 
-namespace SubjectTrackerApi.Models
+using SubjectTrackerApi.Models;
+
+namespace SubjectTrackerApi.Brokers
 {
-    public class Subject
+    public interface IStorageBroker
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        Task<Subject> InsertSubjectAsync(Subject subject);
     }
 }
