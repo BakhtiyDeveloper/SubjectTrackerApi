@@ -9,11 +9,6 @@ using SubjectTrackerApi.Models;
 
 namespace SubjectTrackerApi.Brokers
 {
-    public interface IStorageBroker
-    {
-
-    }
-
     public class StorageBroker : EFxceptionsContext, IStorageBroker
     {
         private IConfiguration configuration;
@@ -24,7 +19,16 @@ namespace SubjectTrackerApi.Brokers
             this.Database.Migrate();
         }
 
-        public DbSet <Subject> subjects { get; set; }   
+        public DbSet <Subject> subjects { get; set; }
+
+        public async Task<Subject> InsertSubjectAsync(Subject subject)
+        {
+            StorageBroker storageBroker = new StorageBroker(this.configuration);
+            await storageBroker.AddAsync(subject);
+            await storageBroker.SaveChangesAsync();
+            
+            return subject;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
